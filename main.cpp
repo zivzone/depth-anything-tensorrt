@@ -113,7 +113,7 @@ int main(int argc, char** argv)
             cv::Mat result;
             cv::hconcat(result_d, show_frame, result);
             cv::resize(result, result, cv::Size(1080, 720));
-            imshow("depth_result", result);
+            // imshow("depth_result", result);
             output_video.write(result_d);
             cv::waitKey(100);
         }
@@ -146,7 +146,7 @@ int main(int argc, char** argv)
             cv::Mat result;
             cv::hconcat(result_d, show_frame, result);
             cv::resize(result, result, cv::Size(1080, 720));
-            imshow("depth_result", result);
+            // imshow("depth_result", result);
             cv::waitKey(100);
 
             std::istringstream iss(imagePath);
