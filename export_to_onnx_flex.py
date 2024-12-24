@@ -22,7 +22,8 @@ args = parser.parse_args()
 
 encoder = args.encoder
 # load_from = args.load_from
-load_from = './checkpoints/depth_anything_' + encoder + '14_' + str(args.image_shape) + '.pth'
+# load_from = './checkpoints/depth_anything_' + encoder + '14_' + str(args.image_shape) + '.pth'
+load_from = './checkpoints/depth_anything_' + encoder + '14.pth'
 image_shape = (3, args.image_shape, args.image_shape)
 
 # Initializing model
@@ -48,7 +49,7 @@ dummy_input = torch.ones(image_shape).unsqueeze(0)
 # Provide an example input to the model, this is necessary for exporting to ONNX
 example_output = depth_anything(dummy_input)
 
-onnx_path = load_from.split('/')[-1].split('.pth')[0] + '.onnx'
+onnx_path = load_from.split('/')[-1].split('.pth')[0] + '_' + str(args.image_shape) + '.onnx'
 
 # Export the PyTorch model to ONNX format
 torch.onnx.export(depth_anything, dummy_input, onnx_path, opset_version=11, input_names=["input"], output_names=["output"], verbose=True)
